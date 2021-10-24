@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_nav.xml"
-    app:startDestination="@id/imageCaptureFragment">
+    app:startDestination="@id/imageAnalysisFragment">
 
     <fragment
         android:id="@+id/previewViewFragment"
@@ -15,5 +15,10 @@
         android:name="dev.hamidrmsj.camerax.ui.image_capture.ImageCaptureFragment"
         android:label="ImageCaptureFragment"
         tools:layout="@layout/fragment_image_capture"/>
+    <fragment
+        android:id="@+id/imageAnalysisFragment"
+        android:name="dev.hamidrmsj.camerax.ui.image_analysis.ImageAnalysisFragment"
+        android:label="ImageAnalysisFragment"
+        tools:layout="@layout/fragment_image_analysis"/>
 
 </navigation>

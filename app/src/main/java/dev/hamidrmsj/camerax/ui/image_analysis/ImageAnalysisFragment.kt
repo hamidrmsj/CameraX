@@ -1,18 +1,16 @@
-package dev.hamidrmsj.camerax.ui.image_capture
+package dev.hamidrmsj.camerax.ui.image_analysis
 
 import android.Manifest
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.karumi.dexter.Dexter
@@ -25,10 +23,11 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.listener.PermissionRequest
 
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import dev.hamidrmsj.camerax.databinding.FragmentImageAnalysisBinding
 
-class ImageCaptureFragment : Fragment() {
+class ImageAnalysisFragment : Fragment() {
 
-    private lateinit var binding: FragmentImageCaptureBinding
+    private lateinit var binding: FragmentImageAnalysisBinding
 
     private lateinit var imageCapture: ImageCapture
 
@@ -36,7 +35,7 @@ class ImageCaptureFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentImageCaptureBinding.inflate(inflater)
+        binding = FragmentImageAnalysisBinding.inflate(inflater)
         return binding.root
     }
 
@@ -100,6 +99,14 @@ class ImageCaptureFragment : Fragment() {
 
             imageCapture = ImageCapture.Builder().build()
 
+            val imageAnalyzer = ImageAnalysis.Builder()
+                .build()
+                .also {
+                    it.setAnalyzer(ContextCompat.getMainExecutor(requireContext()), LuminosityAnalyzer { luma ->
+                        binding.luma.text = "Average luminosity: $luma"
+                    })
+                }
+
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -110,7 +117,7 @@ class ImageCaptureFragment : Fragment() {
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture)
+                    this, cameraSelector, preview, imageCapture, imageAnalyzer)
 
             } catch(exc: Exception) {
                 Toast.makeText(requireContext(),"Something went wrong!", Toast.LENGTH_LONG).show()
