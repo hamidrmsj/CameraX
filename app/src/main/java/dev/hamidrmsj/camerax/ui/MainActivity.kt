@@ -1,7 +1,8 @@
-package dev.hamidrmsj.camerax
+package dev.hamidrmsj.camerax.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dev.hamidrmsj.camerax.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
