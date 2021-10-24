@@ -1,43 +1,34 @@
-package dev.hamidrmsj.camerax.ui.camera
+package dev.hamidrmsj.camerax.ui.preview_view
 
 import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.PermissionRequest
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.single.PermissionListener
-import dev.hamidrmsj.camerax.R
-import dev.hamidrmsj.camerax.databinding.FragmentCameraPreviewBinding
-
-class CameraPreviewFragment : Fragment() {
-
-    companion object {
-        private const val TAG = "CameraXBasic"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-    }
+import dev.hamidrmsj.camerax.databinding.FragmentPreviewViewBinding
 
 
-    private lateinit var binding: FragmentCameraPreviewBinding
+class PreviewViewFragment : Fragment() {
+
+
+    private lateinit var binding: FragmentPreviewViewBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCameraPreviewBinding.inflate(inflater)
+        binding = FragmentPreviewViewBinding.inflate(inflater)
         return binding.root
     }
 

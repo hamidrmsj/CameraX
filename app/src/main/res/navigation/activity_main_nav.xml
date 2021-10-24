@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_nav.xml"
-    app:startDestination="@id/cameraPreviewFragment2">
+    app:startDestination="@id/previewViewFragment">
     <fragment
-        android:id="@+id/cameraPreviewFragment2"
-        android:name="dev.hamidrmsj.camerax.ui.camera.CameraPreviewFragment"
-        android:label="CameraPreviewFragment"
-        tools:layout="@layout/fragment_camera_preview"/>
+        android:id="@+id/previewViewFragment"
+        android:name="dev.hamidrmsj.camerax.ui.preview_view.PreviewViewFragment"
+        android:label="PreviewViewFragment"
+        tools:layout="@layout/fragment_preview_view"/>
 </navigation>
